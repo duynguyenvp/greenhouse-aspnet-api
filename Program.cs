@@ -1,4 +1,6 @@
+using greenhouse_aspnet_api.db.Models;
 using greenhouse_aspnet_api.Middlewares;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Formatting.Json;
 
@@ -19,6 +21,12 @@ try
   builder.Services.AddEndpointsApiExplorer();
   builder.Services.AddSwaggerGen();
   builder.Services.AddControllers();
+  builder.Services.AddDbContextPool<GreenhouseDbContext>(options =>
+  {
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseNpgsql(connectionString)
+          .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+  });
   // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
   builder.Services.AddOpenApi();
 
