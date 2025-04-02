@@ -1,0 +1,6 @@
+@greenhouse_aspnet_api_HostAddress = http://localhost:5210
+
+GET {{greenhouse_aspnet_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

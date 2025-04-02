@@ -1,0 +1,79 @@
+# ASP.NET Core .gitignore
+
+## Binaries
+bin/
+obj/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio Code
+.vscode/
+*.code-workspace
+
+## Build output
+out/
+
+## Dependencies
+packages/
+!packages/repositories.config
+
+## Logs
+*.log
+
+## OS-specific files
+.DS_Store
+Thumbs.db
+
+## Secrets
+appsettings.Development.json
+secrets.json
+
+## Entity Framework Migrations
+Migrations/
+
+## Docker
+**/docker-compose.override.yml
+**/docker-compose.*.yml
+**/dockerfile
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+## Rider
+.idea/
+*.sln.iml
+
+## JetBrains Rider
+*.sln.DotSettings.user
+
+## Coverage & Reports
+coverage/
+TestResults/
+*.coverage
+
+## Publish output
+wwwroot/dist/
+wwwroot/node_modules/
+wwwroot/lib/
+
+## Local database
+*.mdf
+*.ldf
+
+## Node.js dependencies
+node_modules/
+
+## Temporary files
+*.tmp
+*.temp
+~$*
+
+## Ignore environment-specific configurations
+.env
+.env.*
