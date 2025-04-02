@@ -1,3 +1,4 @@
+using greenhouse_aspnet_api.db;
 using greenhouse_aspnet_api.db.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,7 @@ namespace greenhouse_aspnet_api.Controllers;
 [Route("/api/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-  private readonly GreenhouseDbContext _dbContext;
+  private readonly IUnitOfWork _uow;
   private static readonly string[] Summaries = new[]
   {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -15,9 +16,9 @@ public class WeatherForecastController : ControllerBase
 
   private readonly ILogger<WeatherForecastController> _logger;
 
-  public WeatherForecastController(ILogger<WeatherForecastController> logger, GreenhouseDbContext dbContext)
+  public WeatherForecastController(ILogger<WeatherForecastController> logger, IUnitOfWork uow)
   {
-    _dbContext = dbContext;
+    _uow = uow;
     _logger = logger;
   }
 
@@ -35,9 +36,9 @@ public class WeatherForecastController : ControllerBase
 
   [Route("test")]
   [HttpGet]
-  public IEnumerable<Device> GetTest()
+  public async Task<IEnumerable<Device>> GetTest()
   {
-    var data = _dbContext.Devices.ToList();
+    var data = await _uow.Devices.GetAll();
     return data;
   }
 }

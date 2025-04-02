@@ -1,4 +1,6 @@
+using greenhouse_aspnet_api.db;
 using greenhouse_aspnet_api.db.Models;
+using greenhouse_aspnet_api.db.Repositories;
 using greenhouse_aspnet_api.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -27,6 +29,8 @@ try
     options.UseNpgsql(connectionString)
           .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
   });
+  builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+  builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
   // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
   builder.Services.AddOpenApi();
 
